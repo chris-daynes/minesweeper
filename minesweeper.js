@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 0,
        col: 0,
        isMine: true,
-       isMarked: false,
+      //  isMarked: true,
        hidden: true,
 
      },
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 0,
        col: 1,
        isMine: true,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 0,
        col: 2,
        isMine: true,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 1,
        col: 0,
        isMine: true,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 1,
        col: 1,
        isMine: true,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 1,
        col: 2,
        isMine: true,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 2,
        col: 0,
        isMine: false,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 2,
        col: 1,
        isMine: false,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', startGame)
        row: 2,
        col: 2,
        isMine: false,
-       isMarked: false,
+      //  isMarked: false,
        hidden: true,
 
      },
@@ -79,10 +79,13 @@ document.addEventListener('DOMContentLoaded', startGame)
  };
 
 function startGame () {
+  document.addEventListener('click', checkForWin );
+  document.addEventListener('contextmenu', checkForWin );
+
   // Don't remove this function call: it makes the game work!
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i]["surroundingMines"] = countSurroundingMines(board.cells[i]);
-    
+
   }
   lib.initBoard()
 }
@@ -92,12 +95,19 @@ function startGame () {
 // 1. Are all of the cells that are NOT mines visible?
 // 2. Are all of the mines marked?
 function checkForWin () {
-
-  // You can use this function call to declare a winner (once you've
-  // detected that they've won, that is!)
-  //   lib.displayMessage('You win!')
-}
-
+  var winMine = 0;
+  var winHide = 0;
+  for (var i= 0; i<board.cells.length; i++){
+    if(board.cells[i].isMine && board.cells[i].isMarked){
+      winMine++;
+    }else if (!board.cells[i].isMine && !board.cells[i].hidden) {
+      winHide++;
+    } 
+  }
+  if (winHide == 3 || winMine == 6){
+  lib.displayMessage('You win!');
+  }
+};
 // Define this function to count the number of mines around the cell
 // (there could be as many as 8). You don't have to get the surrounding
 // cells yourself! Just use `lib.getSurroundingCells`:
