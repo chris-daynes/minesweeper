@@ -3,80 +3,20 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
  var board = {
    cells: [
-     {
-       row: 0,
-       col: 0,
-       isMine: true,
-      //  isMarked: true,
-       hidden: true,
+     {row: 0, col: 0, isMine: true, hidden: true},
+     {row: 0, col: 1, isMine: true, hidden: true},
+     {row: 0, col: 2, isMine: true, hidden: true},
+     {row: 1, col: 0, isMine: true, hidden: true},
+     {row: 1, col: 1, isMine: true, hidden: true},
+     {row: 1, col: 2, isMine: true, hidden: true},
+     {row: 2, col: 0, isMine: true, hidden: true},
+     {row: 2, col: 1, isMine: true, hidden: true},
+     {row: 2, col: 2, isMine: true, hidden: true},
 
-     },
-     {
-       row: 0,
-       col: 1,
-       isMine: true,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 0,
-       col: 2,
-       isMine: true,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 1,
-       col: 0,
-       isMine: true,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 1,
-       col: 1,
-       isMine: true,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 1,
-       col: 2,
-       isMine: true,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 2,
-       col: 0,
-       isMine: false,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 2,
-       col: 1,
-       isMine: false,
-      //  isMarked: false,
-       hidden: true,
-
-     },
-     {
-       row: 2,
-       col: 2,
-       isMine: false,
-      //  isMarked: false,
-       hidden: true,
-
-     },
    ]
  };
+
+
 
 function startGame () {
   document.addEventListener('click', checkForWin );
@@ -102,7 +42,7 @@ function checkForWin () {
       winMine++;
     }else if (!board.cells[i].isMine && !board.cells[i].hidden) {
       winHide++;
-    } 
+    }
   }
   if (winHide == 3 || winMine == 6){
   lib.displayMessage('You win!');
