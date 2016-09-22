@@ -1,24 +1,68 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
- var board = {
-   cells: [
-     {row: 0, col: 0, isMine: true, hidden: true},
-     {row: 0, col: 1, isMine: true, hidden: true},
-     {row: 0, col: 2, isMine: true, hidden: true},
-     {row: 1, col: 0, isMine: true, hidden: true},
-     {row: 1, col: 1, isMine: true, hidden: true},
-     {row: 1, col: 2, isMine: true, hidden: true},
-     {row: 2, col: 0, isMine: true, hidden: true},
-     {row: 2, col: 1, isMine: true, hidden: true},
-     {row: 2, col: 2, isMine: true, hidden: true},
+ var board = { cells: [] }
+  //    {row: 0, col: 0, isMine: true, hidden: true},
+  //    {row: 0, col: 1, isMine: true, hidden: true},
+  //    {row: 0, col: 2, isMine: true, hidden: true},
+  //    {row: 1, col: 0, isMine: true, hidden: true},
+  //    {row: 1, col: 1, isMine: true, hidden: true},
+  //    {row: 1, col: 2, isMine: true, hidden: true},
+  //    {row: 2, col: 0, isMine: false, hidden: true},
+  //    {row: 2, col: 1, isMine: false, hidden: true},
+  //    {row: 2, col: 2, isMine: false, hidden: true},
+   //
+  //  ]
 
-   ]
- };
+ function makeBoard(num) {
+   //itereate to make rows and in each row iterate to make cells
+   //declare cells as an empy array to push new objects to.
+   //make a row
+   for(var i = 0; i < num; i++) {
+     //make cells in the row.
+     for(var j = 0; j < num; j++) {
+       board.cells.push({
+         row: i,
+         col: j,
+         isMine: true,
+         hidden: true
+       })
+
+     }
+   }
+ }
+
+ // function Makecell(row, col, isMine, hidden){
+ //   this.row = row;
+ //   this.col = col;
+ //   this.isMine = isMine;
+ //   this.hidden = hidden;
+ // }
 
 
 
 function startGame () {
+
+
+
+
+//Ask the user what size grid that they want
+
+var boardSize = prompt("What size square grid would you like? Please enter a number between 3 and 6" , "4");
+
+while(isNaN(boardSize)) {
+  boardSize = prompt("That's not a number Dude!" , "4");
+}
+
+//Now call a function to create the board from above information.
+
+makeBoard(boardSize);
+
+
+
+
+
+
   document.addEventListener('click', checkForWin );
   document.addEventListener('contextmenu', checkForWin );
 
