@@ -24,20 +24,14 @@ document.addEventListener('DOMContentLoaded', startGame)
        board.cells.push({
          row: i,
          col: j,
-         isMine: true,
+         isMine: Math.random()>0.80,
          hidden: true
        })
-
      }
    }
  }
 
- // function Makecell(row, col, isMine, hidden){
- //   this.row = row;
- //   this.col = col;
- //   this.isMine = isMine;
- //   this.hidden = hidden;
- // }
+
 
 
 
