@@ -59,6 +59,7 @@ makeBoard(boardSize);
 
   document.addEventListener('click', checkForWin );
   document.addEventListener('contextmenu', checkForWin );
+  document.addEventListener('click', resetGame);
 
   // Don't remove this function call: it makes the game work!
   for (var i = 0; i < board.cells.length; i++) {
